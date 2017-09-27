@@ -47,6 +47,10 @@ namespace AutomatedTellerMachine.Controllers {
             return View();
         }
 
+        public ActionResult Foo() {
+            return View("About");
+        }
+
         public ActionResult Serial(string letterCase) {
             string serial = "ASPNETMVC5ATM1";
             if (letterCase == "lower") {
