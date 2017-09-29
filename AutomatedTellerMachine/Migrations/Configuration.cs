@@ -45,6 +45,22 @@ namespace AutomatedTellerMachine.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.Transactions.Add(new Transaction { Amount = 71, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = -21, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = 100000, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = 19.99m, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = 64.40m, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = 100, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = -300, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = 211.71m, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = 198, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = 2, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = 10, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = -1.10m, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = 6100, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = 164.84m, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = .01m, CheckingAccountId = 1 });
         }
     }
 }

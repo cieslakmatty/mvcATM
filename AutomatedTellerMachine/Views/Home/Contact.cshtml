@@ -1,22 +1,64 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+	ViewBag.Title = "Contact";
 }
 <h2>@ViewBag.Title.</h2>
 
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
+	One Microsoft Way<br />
+	Redmond, WA 98052-6399<br />
+	<abbr title="Phone">P:</abbr>
+	425.555.0100
 </address>
 
 <address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+	<strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+	<strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
 </address>
 
-<h3>@ViewBag.Message</h3>
-<form method="post">
-	<textarea name="message"></textarea>
-	<input type="submit" value="Send" />
-</form>
+<div id="formSection">
+	<h3>@ViewBag.Message</h3>
+	<form method="post" id="contactForm">
+		<textarea id="message" name="message" maxlength="150" data-bind="value:message,valueUpdate:'input'"></textarea>
+		<br />
+		<input type="Submit" value="Send" />
+		<br />
+		<span data-bind="text:charactersRemaining"></span> characters remaining.
+	</form>
+	<img src="~/Content/images/progress.gif" id="progress" style="display:none" />
+</div>
+
+@section scripts{
+	<script src="~/Scripts/knockout-3.4.2.js"></script>
+	<script>
+		function ContactViewModel() {
+			var self = this;
+			self.message = ko.observable('');
+			self.charactersRemaining = ko.computed(function () {
+				return 150 - self.message().length;
+			});
+		}
+		ko.applyBindings(new ContactViewModel());
+	</script>
+	<script>
+		$('#contactForm').submit(function () {
+			$('#progress').show();
+			$.post('', { message: $('#message').val() })
+				.done(function (response) {
+					setTimeout(function () { $('#formSection').html(response); }, 2000);
+				});
+			return false;
+		});
+	</script>
+}
+
+@*<div id = "formSection">
+		<h3>@ViewBag.Message</h3>
+		@using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "formSection" })) {
+			<textarea id="message" name="message"></textarea>
+			<input type="Submit" value="Send" />
+		}
+	</div>
+
+	@section scripts{
+		<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+	}*@
