@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
+﻿using AutomatedTellerMachine.Migrations;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 namespace AutomatedTellerMachine.Models {
 
-    public interface IApplicationDbContext
-    {
+    public interface IApplicationDbContext {
         IDbSet<CheckingAccount> CheckingAccounts { get; set; }
         IDbSet<Transaction> Transactions { get; set; }
 
@@ -23,6 +19,11 @@ namespace AutomatedTellerMachine.Models {
 
         public static ApplicationDbContext Create() {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+            base.OnModelCreating(modelBuilder);
         }
 
         public IDbSet<CheckingAccount> CheckingAccounts { get; set; }

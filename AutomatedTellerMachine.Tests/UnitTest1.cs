@@ -17,7 +17,7 @@ namespace AutomatedTellerMachine.Tests {
         [TestMethod]
         public void ContactFormSaysThanks() {
             var homeControler = new HomeController();
-            var result = homeControler.Contact("Test") as ViewResult;
+            var result = homeControler.Contact("Test") as PartialViewResult;
             Assert.IsNotNull(result.ViewBag.Message);
         }
 

@@ -1,23 +1,19 @@
-namespace AutomatedTellerMachine.Migrations
-{
+namespace AutomatedTellerMachine.Migrations {
     using AutomatedTellerMachine.Models;
     using AutomatedTellerMachine.Services;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AutomatedTellerMachine.Models.ApplicationDbContext>
-    {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = false;
+    internal sealed class Configuration : DbMigrationsConfiguration<AutomatedTellerMachine.Models.ApplicationDbContext> {
+        public Configuration() {
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
+            ContextKey = "AutomatedTellerMachine.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(AutomatedTellerMachine.Models.ApplicationDbContext context)
-        {
+        protected override void Seed(AutomatedTellerMachine.Models.ApplicationDbContext context) {
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new UserManager<ApplicationUser>(userStore);
 
@@ -46,7 +42,7 @@ namespace AutomatedTellerMachine.Migrations
             //    );
             //
 
-            context.Transactions.Add(new Transaction { Amount = 71, CheckingAccountId = 1 });
+            /*context.Transactions.Add(new Transaction { Amount = 71, CheckingAccountId = 1 });
             context.Transactions.Add(new Transaction { Amount = -21, CheckingAccountId = 1 });
             context.Transactions.Add(new Transaction { Amount = 100000, CheckingAccountId = 1 });
             context.Transactions.Add(new Transaction { Amount = 19.99m, CheckingAccountId = 1 });
@@ -60,7 +56,7 @@ namespace AutomatedTellerMachine.Migrations
             context.Transactions.Add(new Transaction { Amount = -1.10m, CheckingAccountId = 1 });
             context.Transactions.Add(new Transaction { Amount = 6100, CheckingAccountId = 1 });
             context.Transactions.Add(new Transaction { Amount = 164.84m, CheckingAccountId = 1 });
-            context.Transactions.Add(new Transaction { Amount = .01m, CheckingAccountId = 1 });
+            context.Transactions.Add(new Transaction { Amount = .01m, CheckingAccountId = 1 });*/
         }
     }
 }
