@@ -304,6 +304,7 @@
     <Content Include="Views\CheckingAccount\Statement.cshtml" />
     <Content Include="Views\Transaction\Withdraw.cshtml" />
     <Content Include="Views\Transaction\QuickCash.cshtml" />
+    <Content Include="Views\Transaction\Transfer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
