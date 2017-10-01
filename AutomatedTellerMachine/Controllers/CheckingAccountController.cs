@@ -34,8 +34,9 @@ namespace AutomatedTellerMachine.Controllers {
         }
 
         //GET: CheckingAccount/Statement
-        public ActionResult Statement(int id) {
-            var checkingAccount = db.CheckingAccounts.Find(id);
+        public ActionResult Statement() {
+            var UserId = User.Identity.GetUserId();
+            var checkingAccount = db.CheckingAccounts.Where(c => c.ApplicationUserId == UserId).First();
             return View(checkingAccount.Transactions.ToList());
         }
 
